@@ -4,7 +4,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import swistoww.springframework.korona.domain.Delivery;
 import swistoww.springframework.korona.model.DeliveryDto;
 import swistoww.springframework.korona.service.DeliveryService;
 
@@ -21,10 +20,10 @@ public class DeliveryController {
     }
 
     @PostMapping
-    public ResponseEntity handlePost(@RequestBody Delivery delivery){
-        UUID id = deliveryService.saveDelivery(delivery);
+    public ResponseEntity saveDelivery(@RequestBody DeliveryDto deliveryDto){
+        Integer id = deliveryService.saveDelivery(deliveryDto);
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Location", "/korona/v2/delivery/" +  id.toString());
+        headers.add("Location", "/korona/v2/deliveryDto/" +  id.toString());
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 

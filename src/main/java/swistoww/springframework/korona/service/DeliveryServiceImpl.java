@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 @Slf4j
 public class DeliveryServiceImpl implements DeliveryService {
 
-    private final DeliveryMapper deliveryMapper;
     private final DeliveryRepository deliveryRepository;
 
     @Override
@@ -43,9 +42,11 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public Delivery getDeliveryById(UUID deliveryId) {
-        String id = deliveryId.toString();
-//        return deliveryRepository.findById(deliveryId).orElseThrow(NoDeliveryFoiundException::new);
-        return null;
+    public DeliveryDto getDeliveryById(Integer deliveryId) {
+        return deliveryRepository.findById(deliveryId)
+            .map(d -> DeliveryDto.builder()
+                .routeLength(d.getRouteLength())
+                .build())
+            .orElseThrow();
     }
 }

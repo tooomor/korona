@@ -28,7 +28,7 @@ public class DeliveryController {
     }
 
     @GetMapping("/{deliveryId}")
-    public ResponseEntity<DeliveryDto> getDelivery(@PathVariable("deliveryId") UUID deliveryId){
+    public ResponseEntity<DeliveryDto> getDelivery(@PathVariable("deliveryId") Integer deliveryId){
         return new ResponseEntity(deliveryService.getDeliveryById(deliveryId), HttpStatus.OK);
     }
 }

@@ -8,5 +8,5 @@ import java.util.UUID;
 public interface DeliveryService {
     Integer saveDelivery(DeliveryDto delivery);
 
-    Delivery getDeliveryById(UUID deliveryId);
+    DeliveryDto getDeliveryById(Integer deliveryId);
 }
